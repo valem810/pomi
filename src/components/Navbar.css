@@ -1,0 +1,6 @@
+.navbar-custom {
+    @apply text-[#ffffff] font-montserrat font-semibold hover:underline underline-offset-4;
+}
+.burger-custom {
+    @apply text-[#000000] text-4xl font-montserrat font-semibold hover:underline underline-offset-4 text-[#050101];
+}

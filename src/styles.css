@@ -1,0 +1,18 @@
+/* styles.css */
+
+.h1 {
+  @apply text-[#000000] text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl;
+}
+
+
+.app-container {
+  background-image: url('./assets/fondo.jpg'); /* Ruta de la imagen */
+  background-size: cover;  /* Asegura que la imagen cubra toda el área */
+  background-position: center;  /* Centra la imagen */
+  background-repeat: no-repeat;  /* Evita que la imagen se repita */
+  height: 100vh;  /* Hace que la imagen ocupe toda la altura de la pantalla */
+}
+
+.bg-white-on-scroll {
+  background-color: white;  /* Cambia el fondo a blanco */
+}
