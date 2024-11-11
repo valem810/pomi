@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      spacing: {
+        'navbar-height': '4rem', // Ajusta según la altura de tu navbar
+      },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'], // Define el nombre de la fuente
       },

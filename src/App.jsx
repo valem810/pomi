@@ -22,11 +22,17 @@ function App() {
                 Aumenta tu productividad y mejora tu concentración con nuestro temporizador Pomodoro.
               </p>
             </div>
+
+            <div className='mx-auto'>
+              <button class=" bg-[#000000] hover:bg-gray-400 text-[#ffffff] font-bold py-2 px-4 rounded inline-flex items-center">
+                Comenzar
+              </button>
+            </div>
           </div>
         </div>
       </section>
       {/*Informativo */}
-      <MainSections /> 
+      <MainSections />
     </div>
   );
 }
