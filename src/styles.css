@@ -16,3 +16,10 @@
 .bg-white-on-scroll {
   background-color: white;  /* Cambia el fondo a blanco */
 }
+
+.theme-switcher-container {
+  position: absolute;
+  top: 2000px;
+  right: 20px;
+  z-index: 10000;
+}
