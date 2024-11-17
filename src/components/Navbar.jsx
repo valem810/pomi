@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 import { Menu, User, X } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const handleLinkClick = (event) => {
@@ -121,12 +122,12 @@ const Navbar = () => {
       {isUserMenuOpen && (
         <div ref={userMenuRef} className="absolute top-16 right-0 bg-[#ffffff] m-2 rounded-md shadow-lg opacity-95 z-10">
           <nav className="flex flex-col space-y-2 px-4 py-2">
-            <a href="login" className="hover:bg-[#010000] hover:text-[#ffffff] rounded-md p-2">
+            <Link to ="/login" className="hover:bg-[#010000] hover:text-[#ffffff] rounded-md p-2">
               Iniciar sesión
-            </a>
-            <a href="registro" className="hover:bg-[#010000] hover:text-[#ffffff] rounded-md p-2">
+            </Link>
+            <Link to ="/registro" className="hover:bg-[#010000] hover:text-[#ffffff] rounded-md p-2">
               Registro
-            </a>
+            </Link>
           </nav>
         </div>
       )}

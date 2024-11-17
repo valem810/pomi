@@ -1,7 +1,8 @@
 // Landing Page
-
 import React from 'react';
 import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
+
 // Componente de Tarjeta reutilizable
 const Card = ({ children }) => {
   return (
@@ -32,12 +33,28 @@ const CardHeader = ({ children }) => {
   return <div className="text-center">{children}</div>;
 };
 
+const Footer = () => {
+  return (
+    <footer className="bg-[#000000] flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bd">
+        <p className="text-[#d6d6d6] text-xs text-muted-foreground">© 2023 Pomi. Todos los derechos reservados.</p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-[#ffffff] text-xs hover:underline underline-offset-4" href="#">
+            Términos de Servicio
+          </Link>
+          <Link className="text-[#ffffff] text-xs hover:underline hover-[#ffffff] underline-offset-4" href="#">
+            Privacidad
+          </Link>
+        </nav>
+      </footer>
+  );
+};
+
 
 function Landing() {
   return (
     <>
-    {/* Navbar */}
-    <Navbar />
+      {/* Navbar */}
+      <Navbar />
       {/* Sección Principal */}
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
         <div className="container px-4 md:px-6">
@@ -52,15 +69,15 @@ function Landing() {
             </div>
 
             <div className='mx-auto'>
-              <button class=" bg-[#000000] hover:bg-gray-400 text-[#ffffff] font-bold py-2 px-4 rounded inline-flex items-center">
+              <Link to="/home" className="bg-[#000000] hover:bg-gray-400 text-[#ffffff] font-bold py-2 px-4 rounded inline-flex items-center">
                 Comenzar
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
       {/* Sección "Cómo funciona" */}
-      <section  id="how-it-works" className="w-full py-12 md:py-24 lg:py-32">
+      <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
             Cómo funciona
@@ -111,9 +128,9 @@ function Landing() {
       </section>
 
       {/* Sección "Beneficios" */}
-      <section id="benefits" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+      <section id="benefits" className="w-full py-12 md:py-24 lg:py-32 bg-[#e6e8ed]">
         <div className="container px-4 md:px-6">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
             Beneficios
           </h2>
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -160,6 +177,7 @@ function Landing() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }
