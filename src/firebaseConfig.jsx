@@ -1,18 +1,19 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+
 
 const firebaseConfig = {
-    apiKey: "AIzaSyArFwle4w2fqvA4PDGLHvCn1KyEvVMSYxc",
-    authDomain: "pomi-b13d0.firebaseapp.com",
-    projectId: "pomi-b13d0",
-    storageBucket: "pomi-b13d0.appspot.com", // corregido storageBucket
-    messagingSenderId: "831851581765",
-    appId: "1:831851581765:web:ed7a7720f0a5f389d66e2c"
-};
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
+  };  
 
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export { app, auth, provider }; // Exporta el proveedor también
+export { app, auth, provider };
