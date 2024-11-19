@@ -1,19 +1,16 @@
-import { defineConfig } from 'vite'; // Asegúrate de incluir esta línea
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: './',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
   build: {
-    outDir: 'dist',
-  },
-  server: {
-    port: 3000, // Cambia el puerto si es necesario
+    outDir: 'dist', // Asegúrate de que esto esté definido correctamente
   },
 });
