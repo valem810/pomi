@@ -3,7 +3,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithPopup
 } from "firebase/auth";
-import { auth, provider } from "../firebaseConfig";
+import { auth, provider} from "../firebaseConfig";
 import { Link } from "react-router-dom";
 
 function Register() {
@@ -18,15 +18,19 @@ function Register() {
             setError("Las contraseñas no coinciden.");
             return;
         }
-
+    
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             alert("Registro exitoso!");
         } catch (error) {
-            setError("Error al registrarse. Intenta nuevamente.");
+            if (error.code === "auth/email-already-in-use") {
+                setError("El correo ya está en uso. Intenta con otro.");
+            } else {
+                setError("Error al registrarse. Intenta nuevamente.");
+            }
         }
     };
-
+    
     const handleGoogleRegister = async () => {
         try {
             await signInWithPopup(auth, provider);

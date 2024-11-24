@@ -36,7 +36,7 @@ const CardHeader = ({ children }) => {
 const Footer = () => {
   return (
     <footer className="bg-[#010000] flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bd">
-        <p className="text-[#d6d6d6] text-xs text-muted-foreground">© 2023 Pomi. Todos los derechos reservados.</p>
+        <p className="text-[#d6d6d6] text-xs text-muted-foreground">© 2024 Pomi. Todos los derechos reservados.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link className="text-[#ffffff] text-xs hover:underline underline-offset-4" href="#">
             Términos de Servicio

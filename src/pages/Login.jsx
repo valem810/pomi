@@ -2,23 +2,31 @@ import { useState } from "react";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      
       alert("Inicio de sesión exitoso!");
+      navigate("/home");
     } catch (error) {
       setError("Error al iniciar sesión. Verifica tus credenciales.");
+      setError(`Error: ${error.message}`);
     }
   };
 
@@ -27,6 +35,7 @@ function Login() {
     try {
       await signInWithPopup(auth, provider);
       alert("Inicio de sesión con Google exitoso!");
+      navigate("/home");
     } catch (error) {
       setError("Error al iniciar sesión con Google.");
     }
@@ -131,6 +140,7 @@ function Login() {
           </div>
         </div>
       </main>
+
     </div>
   );
 }
