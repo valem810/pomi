@@ -1,67 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import { collection, query, where, getDocs } from 'firebase/firestore'
-import { db } from '../firebaseConfig'
-import { Clock, Coffee } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
 
 const Home = () => {
-  const [completedTasks, setCompletedTasks] = useState([])
+  const [publicTasks, setPublicTasks] = useState([]);
 
   useEffect(() => {
-    const fetchCompletedTasks = async () => {
-      const q = query(collection(db, 'doneTasks'), where('status', '==', 'done'))
-      const querySnapshot = await getDocs(q)
-      const tasks = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }))
-      setCompletedTasks(tasks)
-    }
+    fetchPublicTasks();
+  }, []);
 
-    fetchCompletedTasks()
-  }, [])
+  const fetchPublicTasks = async () => {
+    const publicQuery = query(collection(db, 'todoTasks'), where('isPublic', '==', true));
+    const publicSnapshot = await getDocs(publicQuery);
+
+    setPublicTasks(publicSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">Tareas Completadas</h1>
-        <div className="grid gap-6">
-          {completedTasks.map((task) => (
-            <TaskCard key={task.id} task={task} />
-          ))}
-        </div>
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-8">Tareas Públicas</h1>
+        {publicTasks.map(task => (
+          <div key={task.id} className="mb-4 p-4 bg-white shadow rounded">
+            <h3 className="font-semibold text-lg">{task.name}</h3>
+            <p className="text-sm text-gray-600">{task.description}</p>
+            <p className="text-xs text-gray-500">Creada por: {task.userName}</p>
+            <p className="text-xs text-gray-500">Fecha: {task.createdAt}</p>
+          </div>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-const TaskCard = ({ task }) => {
-  return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="md:flex">
-        {task.imageUrl && (
-          <div className="md:flex-shrink-0">
-            <img className="h-48 w-full object-cover md:w-48" src={task.imageUrl} alt={task.name} />
-          </div>
-        )}
-        <div className="p-8">
-          <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{task.name}</div>
-          <p className="mt-2 text-gray-500">{task.description}</p>
-          <div className="mt-4 flex items-center text-sm text-gray-500">
-            <Clock className="mr-2 h-4 w-4" />
-            Creada el: {task.createdAt}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <Clock className="mr-2 h-4 w-4" />
-            Pomodoros: {task.pomodoros || 0}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <Coffee className="mr-2 h-4 w-4" />
-            Descansos: {task.breaks || 0}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default Home
+export default Home;
