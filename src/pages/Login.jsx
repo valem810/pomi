@@ -23,19 +23,33 @@ function Login() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      
+
       // Guarda la información del usuario en localStorage
-      localStorage.setItem("user", JSON.stringify({
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        })
+      );
 
       alert("Inicio de sesión exitoso!");
       navigate("/home"); // Redirige al usuario a la página principal
     } catch (error) {
-      setError("Error al iniciar sesión. Verifica tus credenciales.");
+      // Manejo de errores más específico
+      const errorCode = error.code;
+      switch (errorCode) {
+        case "auth/user-not-found":
+          setError("Usuario no encontrado. Verifica tu correo electrónico.");
+          break;
+        case "auth/wrong-password":
+          setError("Contraseña incorrecta. Inténtalo de nuevo.");
+          break;
+        default:
+          setError("Error al iniciar sesión. Por favor, inténtalo más tarde.");
+      }
     }
   };
 
@@ -47,38 +61,39 @@ function Login() {
       const user = userCredential.user;
 
       // Guarda la información del usuario en localStorage
-      localStorage.setItem("user", JSON.stringify({
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        })
+      );
 
       alert("Inicio de sesión con Google exitoso!");
       navigate("/home");
     } catch (error) {
-      setError("Error al iniciar sesión con Google.");
+      setError("Error al iniciar sesión con Google. Inténtalo más tarde.");
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="flex justify-between items-center p-4 w-full bg-[#000000] file:shadow-md">
-        <a href="/" className="w-8 h-8">
-          <div className='flex-shrink-0'>
-            <a href="/" >
+      <header className="flex justify-between items-center p-4 w-full bg-black shadow-md">
+        <div className="flex-shrink-0">
+          <Link to="/">
             <span className="text-white font-montserrat font-bold text-2xl">
-                        Pomodorito
-                    </span>
-            </a>
-          </div>
-        </a>
+              Pomodorito
+            </span>
+          </Link>
+        </div>
         <nav className="flex gap-4 items-center">
-          <a href="/contact" className="text-sm text-[#a3a3a3] hover:text-[#ffffff]">
+          <Link to="/contact" className="text-sm text-gray-400 hover:text-white">
             Contact
-          </a>
-          <Link to="/registro" className="text-sm font-medium text-[#a3a3a3] hover:text-[#ffffff]">
+          </Link>
+          <Link to="/registro" className="text-sm font-medium text-gray-400 hover:text-white">
             Sign Up
           </Link>
         </nav>
@@ -101,7 +116,7 @@ function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Correo electrónico"
                 required
-                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#000000]"
+                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-black"
               />
               <input
                 type="password"
@@ -109,11 +124,11 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Contraseña"
                 required
-                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#000000]"
+                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-black"
               />
               <button
                 type="submit"
-                className="w-full bg-[#000000] text-white py-2 rounded hover:bg-blue-600"
+                className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
               >
                 Iniciar sesión
               </button>

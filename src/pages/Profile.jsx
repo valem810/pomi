@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { User, Mail, Camera } from "lucide-react";
 import { auth } from "../firebaseConfig";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState(
-    auth.currentUser?.photoURL || "/placeholder.svg?height=128&width=128"
+    auth.currentUser?.photoURL || "/placeholder.svg"
   );
   const [uploading, setUploading] = useState(false);
   const userName = auth.currentUser?.displayName || "Usuario";
   const userEmail = auth.currentUser?.email || "correo@ejemplo.com";
+
+  useEffect(() => {
+    if (!auth.currentUser) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -18,14 +26,18 @@ function Profile() {
       setUploading(true);
 
       try {
+        if (!auth.currentUser) {
+          alert("El usuario no está autenticado.");
+          return;
+        }
+
         const storage = getStorage();
         const storageRef = ref(storage, `profile_images/${auth.currentUser.uid}`);
-        await uploadBytes(storageRef, file); // Subir imagen al Storage
-        const downloadURL = await getDownloadURL(storageRef); // Obtener URL pública de la imagen
+        await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(storageRef);
 
-        // Actualizar el perfil del usuario con el nuevo URL de la foto
         await updateProfile(auth.currentUser, { photoURL: downloadURL });
-        setProfileImage(downloadURL); // Actualizar el estado local con la nueva URL
+        setProfileImage(downloadURL);
         alert("¡Foto de perfil actualizada!");
       } catch (error) {
         console.error("Error al subir la imagen: ", error);
