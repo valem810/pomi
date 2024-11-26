@@ -62,8 +62,10 @@ const Navbar = () => {
         <div className='flex items-center justify-between h-16'>
           <div className='flex items-center'>
             <div className='flex-shrink-0'>
-              <a href="/" className='text-white font-montserrat font-semibold text-2xl'>
-                Pomodorito
+              <a href="/" >
+                <span className="text-white font-montserrat font-bold text-2xl">
+                        Pomodorito
+                    </span>
               </a>
             </div>
           </div>
