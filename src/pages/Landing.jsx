@@ -69,7 +69,7 @@ function Landing() {
             </div>
 
             <div className='mx-auto'>
-              <Link to="/home" className="bg-[#000000] hover:bg-gray-400 text-[#ffffff] font-bold py-2 px-4 rounded inline-flex items-center">
+              <Link to="/login" className="bg-[#000000] hover:bg-gray-400 text-[#ffffff] font-bold py-2 px-4 rounded inline-flex items-center">
                 Comenzar
               </Link>
             </div>

@@ -8,9 +8,9 @@ import { Navigate, Routes, Route } from 'react-router-dom';
 
 import Layout from './pages/Layout'; // Asegúrate de importar el Layout
 import Profile from './pages/Profile';
-import Schedule from './pages/Schedule';
+import Clock from './pages/Clock';
 import Tasks from './pages/Tasks';
-
+import NavbarLayout from './pages/NavbarLayout';
 import './styles.css';
 
 function App() {
@@ -25,8 +25,8 @@ function App() {
 
         <Route path='*' element={<Navigate to="/"></Navigate>}> </Route>
 
-        <Route path="/profile" element={<Layout><Profile /></Layout>} />
-        <Route path="/schedule" element={<Layout><Schedule /></Layout>} />
+        <Route path="/profile" element={<NavbarLayout><Profile /></NavbarLayout>} />
+        <Route path="/clock" element={<Layout><Clock /></Layout>} />
         <Route path="/tasks" element={<Layout><Tasks /></Layout>} />
         <Route path="/home" element={<Layout><Home /></Layout>} />
       </Routes>
