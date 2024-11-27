@@ -12,6 +12,7 @@ const Tasks = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [selectedCompletedTask, setSelectedCompletedTask] = useState(null);
+  const [userName, setUserName] = useState('');
   const navigate = useNavigate();
 
   // Verificar si el usuario está autenticado
@@ -20,6 +21,7 @@ const Tasks = () => {
       navigate('/login');
     } else {
       fetchTasks();
+      setUserName(auth.currentUser.displayName || 'Usuario');
     }
   }, [navigate]);
 
@@ -112,7 +114,9 @@ const Tasks = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">Gestor de Tareas</h1>
+      <h1 className="text-3xl font-bold text-left mb-8">
+  Hola, {userName}!
+</h1>
         <div className="flex justify-end mb-4">
           <button
             onClick={() => {
