@@ -32,7 +32,7 @@ function Register() {
             setIsLoading(false);
             return;
         }
-    
+
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             await updateProfile(userCredential.user, {
@@ -51,7 +51,7 @@ function Register() {
             setIsLoading(false);
         }
     };
-    
+
     const handleGoogleRegister = async () => {
         setIsLoading(true);
         try {
@@ -162,7 +162,7 @@ function Register() {
                                     <div className="absolute inset-0 flex items-center">
                                         <div className="w-full border-t border-gray-300"></div>
                                     </div>
-                                    <div className="relative flex justify-center text-sm">
+                                    <div className="relative flex justify-center text-sm py-2 space-x-2">
                                         <span className="px-2 bg-white text-gray-500">
                                             Or continue with
                                         </span>
@@ -172,9 +172,7 @@ function Register() {
                                 <button
                                     onClick={handleGoogleRegister}
                                     disabled={isLoading}
-                                    className={`mt-4 w-full flex items-center justify-center space-x-2 bg-white border border-gray-300 
-                                        text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors
-                                        ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    className={"w-full bg-white border border-gray-300 text-gray-700 py-2 rounded hover:bg-gray-100 flex items-center justify-center"}
                                 >
                                     <svg className="h-5 w-5" viewBox="0 0 24 24">
                                         <path
@@ -198,10 +196,10 @@ function Register() {
                                 </button>
                             </div>
 
-                            <p className="mt-6 text-center text-sm text-gray-600">
+                            <p className="text-center text-sm mt-4">
                                 Already have an account?{" "}
                                 <Link to="/login"
-                                    className="font-medium text-black hover:text-gray-800 transition-colors"
+                                    className="text-blue-600 hover:text-blue-800"
                                 >
                                     Log in
                                 </Link>
