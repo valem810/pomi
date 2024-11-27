@@ -9,11 +9,20 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate(); 
-  
-  useEffect(() => {
-    fetchPublicTasks();
-  }, []);
 
+  useEffect(() => {
+    // Verificar autenticación
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigate('/login'); // Redirigir a login si no está autenticado
+      }
+    });
+  
+
+    fetchPublicTasks();
+    return () => unsubscribe();
+  }, []);
+ 
   const fetchPublicTasks = async () => {
     try {
       const publicQuery = query(collection(db, 'tasks'), where('isPublic', '==', true));

@@ -57,7 +57,7 @@ function Profile() {
           <img
             className="w-32 h-32 rounded-full object-cover bg-gray-200"
             src={profileImage}
-            alt="Foto de perfil"
+  
           />
           <label
             htmlFor="upload-profile"
