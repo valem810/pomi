@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebaseConfig'; // Asegúrate de importar Firebase Auth
 import { db } from '../firebaseConfig';
 
 const Home = () => {
   const [publicTasks, setPublicTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate(); 
+  
   useEffect(() => {
     fetchPublicTasks();
   }, []);

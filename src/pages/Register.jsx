@@ -87,7 +87,7 @@ function Register() {
                 <div className="w-full max-w-md">
                     <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                         <div className="p-8">
-                            <h1 className="text-3xl font-bold text-center text-gray-900 mb-6 bottom-8">
+                            <h1 className="text-3xl font-bold text-center text-gray-900 mb-6">
                                 Create your account
                             </h1>
 
