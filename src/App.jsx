@@ -1,12 +1,12 @@
 // App.js
 import React from 'react';
-import Landing from './pages/Landing';  // Importa el nuevo componente
-import Login from './pages/Login';  // Importa el nuevo componente
-import Register from './pages/Register';  // Importa el nuevo componente
-import Home from './pages/Home';  // Importa el nuevo componente
+import Landing from './pages/Landing';  
+import Login from './pages/Login';  
+import Register from './pages/Register';  
+import Home from './pages/Home';  
 import { Navigate, Routes, Route } from 'react-router-dom';
 
-import Layout from './pages/Layout'; // Asegúrate de importar el Layout
+import Layout from './pages/Layout'; 
 import Profile from './pages/Profile';
 import Clock from './pages/Clock';
 import Tasks from './pages/Tasks';
