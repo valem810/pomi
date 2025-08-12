@@ -10,4 +10,4 @@ const Label = ({ htmlFor, children }) => {
   );
 };
 
-export {Label}; // Asegúrate de que sea "default"
+export {Label}; 
