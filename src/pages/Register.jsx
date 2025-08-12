@@ -42,17 +42,17 @@ function Register() {
             await updateProfile(userCredential.user, {
                 displayName: username
             });
-            // Clear form fields
+ 
             setUsername("");
             setEmail("");
             setPassword("");
             setConfirmPassword("");
-            // Show success notification
+    
             setShowSuccessNotification(true);
-            // Hide success notification after 3 seconds
+        
             setTimeout(() => {
                 setShowSuccessNotification(false);
-                navigate("/login"); // Redirect to login page after successful registration
+                navigate("/login");
             }, 3000);
         } catch (error) {
             if (error.code === "auth/email-already-in-use") {
