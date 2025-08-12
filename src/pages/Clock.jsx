@@ -17,10 +17,10 @@ const Clock = () => {
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
   const [showFinishConfirmation, setShowFinishConfirmation] = useState(false);
   const [pomodoroHistory, setPomodoroHistory] = useState([]);
-  const [sessionStartTime, setSessionStartTime] = useState(null); // Added state variable
+  const [sessionStartTime, setSessionStartTime] = useState(null); 
   const navigate = useNavigate();
 
-  // Load tasks from Firebase
+
   useEffect(() => {
     if (!auth.currentUser) {
       navigate('/login');
@@ -44,7 +44,7 @@ const Clock = () => {
     }
   };
 
-  // Pomodoro timer logic
+
   useEffect(() => {
     let interval;
 
@@ -90,7 +90,7 @@ const Clock = () => {
       setIsTaskSelectionLocked(true);
     }
     if (!isActive) {
-      setSessionStartTime(Date.now()); // Set start time when starting
+      setSessionStartTime(Date.now()); 
     }
   };
 
@@ -122,8 +122,7 @@ const Clock = () => {
         setSelectedTask(task);
       } catch (error) {
         console.error('Error selecting task:', error);
-        // Optionally, you can show an error message to the user
-        // alert('There was an error selecting the task. Please try again.');
+      
       }
     }
   };
@@ -153,8 +152,7 @@ const Clock = () => {
     } else {
       elapsedTime = 5 - (minutes + seconds / 60);
     }
-    elapsedTime = Math.round(elapsedTime * 10) / 10; // Round to 1 decimal place
-
+    elapsedTime = Math.round(elapsedTime * 10) / 10; 
     setPomodoroHistory((prevHistory) => [
       ...prevHistory,
       { type: mode, duration: elapsedTime }
@@ -298,7 +296,7 @@ const Clock = () => {
                 )}
                 {isActive ? "Pausar" : "Iniciar"}
               </button>
-              {isActive && ( // Added conditional rendering for Finalizar button
+              {isActive && ( 
                 <button
                   onClick={finalizeSession}
                   className="px-6 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white flex items-center"
