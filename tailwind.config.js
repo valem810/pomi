@@ -18,10 +18,10 @@ export default {
     },
     extend: {
       spacing: {
-        "navbar-height": "4rem", // Ajusta según la altura de tu navbar
+        "navbar-height": "4rem", 
       },
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"], // Define el nombre de la fuente
+        montserrat: ["Montserrat", "sans-serif"], 
       },
       colors: {
         border: "hsl(var(--border))",
