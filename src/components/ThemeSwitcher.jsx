@@ -5,11 +5,6 @@ import { useTheme } from 'next-themes';
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
 
-  // Función para manejar el cambio de tema y loggear "HOLAA"
-  const handleThemeChange = (newTheme) => {
-    setTheme(newTheme);
-    console.log("HOLAA");  // Muestra el mensaje en consola
-  };
 
   return (
     <div className="bg-background border border-input flex items-center justify-center rounded-full p-1">
