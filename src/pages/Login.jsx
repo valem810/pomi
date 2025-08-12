@@ -87,7 +87,7 @@ function Login() {
         <div className="flex-shrink-0">
           <Link to="/">
             <span className="text-white font-montserrat font-bold text-2xl">
-              Pomodi
+              Pomi
             </span>
           </Link>
         </div>
