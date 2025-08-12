@@ -14,4 +14,4 @@ const Input = ({ id, type, placeholder, className, ...props }) => {
   );
 };
 
-export {Input}; // Asegúrate de que sea "default"
+export {Input}; 
